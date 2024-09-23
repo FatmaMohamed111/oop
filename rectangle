@@ -1,0 +1,41 @@
+#include <bits/stdc++.h>
+using namespace std;
+class Rectangle{
+protected:
+    int width;
+    int height;
+    public:
+    Rectangle()
+    {
+        width=10;
+        height=10;
+    }
+    void display()
+    {
+    cout << "The wedith = " << this->width<< "\n"<< "The height = "<< this->height<< "\n";
+    }
+};
+class AreaRectangle:public Rectangle{
+public:
+    void read_input()
+    {
+        cout << "Enter width \n";
+        cin >> this->width;
+        cout << "Enter height \n";
+        cin >> this->height;
+    }
+    void display()
+    {
+
+        cout <<"The wedith = " << this->width<< "\n"<< "The height = "<< this->height<< "\n"<< "Area = "<< this->width*this->height<< "\n";
+    }
+
+};
+int main() {
+   Rectangle c1;
+   c1.display();
+   AreaRectangle c2;
+   c2.read_input();
+   c2.display();
+    return 0;
+}

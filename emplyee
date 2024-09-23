@@ -1,0 +1,94 @@
+#include <bits/stdc++.h>
+using namespace std;
+class Employee{
+protected:
+    string name;
+    string SSN;
+    double salary;
+public:
+    Employee(string name ,string SSN,double salary)
+    {
+
+     this->name=name;
+        this->SSN=SSN;
+        this->salary=salary;
+    }
+    double Get_TotalSalary()
+    {cout << "Total_Salary = ";
+      return this->salary;
+    }
+    void print (){
+        cout << "name:"<< this->name << " "<< "SSN:"<< this->SSN << " "<< "salary="<<this->salary<< "\n"; ;
+    }
+};
+class Engineer: public Employee{
+    string speciality;
+    int Experience;
+    int overtime_hours;
+    float overtime_hour_rate;
+public:
+    Engineer( string name ,string SSN,double salary,string speciality,int Experience,int overtime_hours, float overtime_hour_rate):Employee(name,SSN,salary){
+        this->speciality=speciality;
+        this->Experience=Experience;
+        this->overtime_hours=overtime_hours;
+        this->overtime_hour_rate=overtime_hour_rate;
+    }
+   void Set_overtime_hours (int overtime_hours){
+       this->overtime_hours=overtime_hours;
+   }
+    void Set_overtime_rate (float overtime_hour_rate){
+this->overtime_hour_rate=overtime_hour_rate;
+    }
+    double Get_TotalSalary()
+    {
+        this->salary+=overtime_hours*overtime_hour_rate;
+        cout << "Total_Salary = ";
+        return this->salary;
+    }
+    void print (){
+        cout << "name:"<< this->name << " "<< "SSN:"<< this->SSN << " "<< "salary="<<this->salary << "\n";
+    }
+};
+class Sales:public Employee{
+    float gross_sales;
+    float commission_rate;
+public:
+    Sales(string name ,string SSN,double salary ,float gross_sales,float commission_rate):Employee(name,SSN,salary){
+         this->gross_sales=gross_sales;
+        this->commission_rate=commission_rate;
+    }
+    void Set_gross_sales (float gross_sales){
+        this->gross_sales=gross_sales;
+    }
+    void Set_commission_rate (float commission_rate){
+        this->commission_rate=commission_rate;
+    }
+    double Get_TotalSalary()
+    {
+        salary+=gross_sales*commission_rate;
+        cout << "Total_Salary = ";
+        return this->salary;
+    }
+    void print (){
+        cout << "name:"<< this->name << " "<< "SSN:"<< this->SSN << " "<< "salary="<<this->salary << "\n"; ;
+    }
+};
+int main() {
+Employee c1("fatma","12345",5000);
+c1.print();
+cout << c1.Get_TotalSalary();
+cout << "\n------------------------------------------\n";
+Engineer c2("mohamed","67891",3000,"programmer",6,1,100);
+c2.Set_overtime_hours(1);
+c2.Set_overtime_rate(100);
+c2.print();
+cout << c2.Get_TotalSalary();
+    cout << "\n------------------------------------------\n";
+Sales c3("kamel","23472",6000,1000,0.010);
+c3.Set_gross_sales(1000);
+c3.Set_commission_rate(0.10);
+c3.print();
+cout << c3.Get_TotalSalary();
+
+    return 0;
+}
